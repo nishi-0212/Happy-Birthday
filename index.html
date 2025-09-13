@@ -1,75 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .birthday-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            text-align: center;
+            max-width: 800px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            animation: cardFloat 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.2em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: titleGlow 3s ease-in-out infinite;
+            letter-spacing: -0.02em;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.2); }
+            50% { text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.4); }
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5em;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 32px;
+            letter-spacing: 0.5px;
+        }
+
+        .message {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1em;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 40px;
+            letter-spacing: 0.3px;
+        }
+
+        .interactive-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .fun-button {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fun-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .fun-button:hover:before {
+            left: 100%;
+        }
+
+        .fun-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .fun-button:active {
+            transform: translateY(0px);
+        }
+
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        .balloon:before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.3);
+            left: 50%;
+            top: 80px;
+            transform: translateX(-50%);
+        }
+
+        .balloon1 {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            top: 8%;
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .balloon2 {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            top: 18%;
+            right: 8%;
+            animation-delay: 1.5s;
+        }
+
+        .balloon3 {
+            background: linear-gradient(135deg, #45b7d1, #3498db);
+            top: 12%;
+            left: 18%;
+            animation-delay: 3s;
+        }
+
+        .balloon4 {
+            background: linear-gradient(135deg, #f9ca24, #f39c12);
+            top: 22%;
+            right: 18%;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-25px) rotate(1deg); }
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            animation: confettiFall 3s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .cake-container {
+            position: relative;
+            display: inline-block;
+            margin: 30px 0;
+        }
+
+        .realistic-cake {
+            position: relative;
+            width: 280px;
+            height: 160px;
+            margin: 0 auto;
+            animation: cakeBounce 1s ease-in-out;
+        }
+
+        @keyframes cakeBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .cake-layer {
+            position: absolute;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .cake-bottom {
+            width: 260px;
+            height: 60px;
+            background: linear-gradient(135deg, #8B4513, #A0522D, #CD853F);
+            bottom: 0;
+            left: 10px;
+            border-radius: 18px 18px 10px 10px;
+        }
+
+        .cake-middle {
+            width: 200px;
+            height: 50px;
+            background: linear-gradient(135deg, #DEB887, #F4A460, #DAA520);
+            bottom: 55px;
+            left: 40px;
+            border-radius: 15px 15px 8px 8px;
+        }
+
+        .cake-top {
+            width: 140px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFB6C1, #FFC0CB, #FF91A4);
+            bottom: 100px;
+            left: 70px;
+            border-radius: 12px 12px 6px 6px;
+        }
+
+        .cake-decoration {
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                #FF69B4,
+                #FF69B4 20px,
+                #FFB6C1 20px,
+                #FFB6C1 40px
+            );
+            border-radius: 4px;
+            bottom: -4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .candle {
+            position: absolute;
+            width: 6px;
+            height: 28px;
+            background: linear-gradient(135deg, #8b4513, #A0522D, #CD853F);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .candle::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -2px;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #ff4500 0%, #ff6b00 50%, #ffaa00 100%);
+            border-radius: 50%;
+            animation: flicker 1.5s ease-in-out infinite alternate;
+            box-shadow: 0 0 12px rgba(255, 69, 0, 0.8), 0 0 20px rgba(255, 140, 0, 0.5);
+        }
+
+        .candle.blown-out::before {
+            background: radial-gradient(circle, #666, #999, #bbb);
+            animation: none;
+            box-shadow: none;
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: scale(1) rotate(-2deg);
+                box-shadow: 0 0 12px rgba(255, 69, 0, 0.8), 0 0 20px rgba(255, 140, 0, 0.5);
+            }
+            100% {
+                transform: scale(1.1) rotate(2deg);
+                box-shadow: 0 0 18px rgba(255, 69, 0, 1), 0 0 30px rgba(255, 140, 0, 0.7);
+            }
+        }
+
+        .blow-instruction {
+            margin-top: 20px;
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .candles-blown {
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 20px;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes smokeRise {
+            0% { opacity: 1; transform: translateY(-15px) scale(1); }
+            100% { opacity: 0; transform: translateY(-40px) scale(1.5); }
+        }
+
+        @keyframes wishAppear {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .microphone-indicator {
+            display: inline-block;
+            margin-left: 10px;
+            color: rgba(255, 255, 255, 0.6);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .microphone-indicator.active {
+            color: #ff4500;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        @media (max-width: 768px) {
+            .birthday-card {
+                padding: 32px 24px;
+                margin: 16px;
+                max-width: 95vw;
+            }
+
+            .main-title {
+                font-size: 2.8em;
+            }
+
+            .realistic-cake {
+                width: 240px;
+                height: 140px;
+            }
+
+            .cake-bottom {
+                width: 220px;
+                height: 50px;
+                left: 10px;
+            }
+
+            .cake-middle {
+                width: 170px;
+                height: 42px;
+                left: 35px;
+                bottom: 45px;
+            }
+
+            .cake-top {
+                width: 120px;
+                height: 35px;
+                left: 60px;
+                bottom: 82px;
+            }
+
+            .interactive-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .fun-button {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="balloon balloon1"></div>
+    <div class="balloon balloon2"></div>
+    <div class="balloon balloon3"></div>
+    <div class="balloon balloon4"></div>
+
+    <div class="container">
+        <div class="birthday-card">
+            <h1 class="main-title">🎉 Happy Birthday! 🎉</h1>
+            <p class="subtitle">To My Amazing Best Friend!</p>
+            <p class="message">
+                Hope your special day is filled with happiness, laughter, and all your favorite things! You deserve all the joy in the world. Click the buttons below for some birthday fun! 🎈
+            </p>
+
+            <div class="interactive-buttons">
+                <button class="fun-button cake" onclick="showCake()">🎂 Show Cake</button>
+                <button class="fun-button confetti" onclick="makeConfetti()">🎊 Confetti</button>
+                <button class="fun-button music" onclick="toggleMusic()">🎵 Play Music</button>
+            </div>
+
+            <div id="cake-display" class="hidden">
+                <div class="cake-container">
+                    <div class="realistic-cake">
+                        <div class="cake-layer cake-bottom">
+                            <div class="cake-decoration"></div>
+                        </div>
+                        <div class="cake-layer cake-middle">
+                            <div class="cake-decoration"></div>
+                        </div>
+                        <div class="cake-layer cake-top">
+                            <div class="cake-decoration"></div>
+                        </div>
+                        <div id="candles"></div>
+                    </div>
+                </div>
+                <p style="color: rgba(255, 255, 255, 0.95); font-size: 1.3em; margin-top: 15px; font-weight: 500;">Make a wish! 🌟</p>
+                <p class="blow-instruction">Blow into your microphone to blow out the candles! 💨 <span id="mic-indicator" class="microphone-indicator">🎤</span></p>
+                <div id="candles-counter" class="candles-blown">21 candles remaining</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let candlesLit = 21;
+        let audioContext = null;
+        let isPlaying = false;
+        let musicInterval = null;
+        let mediaStream = null;
+        let analyser = null;
+        let isListening = false;
+
+        function initAudio() {
+            if (!audioContext) {
+                try {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) {
+                    console.log('Web Audio API not supported');
+                }
+            }
+            return audioContext;
+        }
+
+        function playNote(frequency, duration = 0.3, volume = 0.1) {
+            const ctx = initAudio();
+            if (!ctx) return;
+
+            try {
+                const oscillator = ctx.createOscillator();
+                const gainNode = ctx.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(ctx.destination);
+
+                oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0, ctx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(volume, ctx.currentTime + 0.01);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+
+                oscillator.start(ctx.currentTime);
+                oscillator.stop(ctx.currentTime + duration);
+            } catch (e) {
+                console.log('Error playing note:', e);
+            }
+        }
+
+        function playChord(frequencies, duration = 0.5) {
+            frequencies.forEach(freq => playNote(freq, duration, 0.05));
+        }
+
+        function playBirthdayMelody() {
+            const melody = [
+                {note: 523.25, duration: 0.4}, // C5
+                {note: 523.25, duration: 0.2}, // C5
+                {note: 587.33, duration: 0.6}, // D5
+                {note: 523.25, duration: 0.6}, // C5
+                {note: 698.46, duration: 0.6}, // F5
+                {note: 659.25, duration: 1.2}, // E5
+            ];
+
+            let time = 0;
+            melody.forEach(({note, duration}) => {
+                setTimeout(() => {
+                    if (isPlaying) {
+                        playNote(note, duration);
+                    }
+                }, time * 1000);
+                time += duration;
+            });
+
+            return time * 1000;
+        }
+
+        function closeAllSections() {
+            document.getElementById('cake-display').classList.add('hidden');
+            stopMicrophoneListening();
+        }
+
+        function toggleMusic() {
+            const button = document.querySelector('.fun-button.music');
+            
+            if (!isPlaying) {
+                isPlaying = true;
+                button.textContent = '🎵 Stop Music';
+                button.style.background = 'linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.3))';
+                button.style.borderColor = 'rgba(46, 204, 113, 0.4)';
+                
+                playBirthdayMelody();
+                musicInterval = setInterval(() => {
+                    if (isPlaying) {
+                        playBirthdayMelody();
+                    }
+                }, 6000);
+            } else {
+                isPlaying = false;
+                button.textContent = '🎵 Play Music';
+                button.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1))';
+                button.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                
+                if (musicInterval) {
+                    clearInterval(musicInterval);
+                    musicInterval = null;
+                }
+            }
+        }
+
+        function showCake() {
+            closeAllSections();
+            const cakeDisplay = document.getElementById('cake-display');
+            cakeDisplay.classList.toggle('hidden');
+            
+            if (!cakeDisplay.classList.contains('hidden')) {
+                createSparkles();
+                createCandles();
+                startMicrophoneListening();
+            }
+        }
+
+        async function startMicrophoneListening() {
+            try {
+                mediaStream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: {
+                        echoCancellation: true,
+                        noiseSuppression: true,
+                        sampleRate: 44100
+                    } 
+                });
+                
+                const audioContext = initAudio();
+                if (!audioContext) throw new Error('AudioContext not available');
+                
+                const source = audioContext.createMediaStreamSource(mediaStream);
+                analyser = audioContext.createAnalyser();
+                
+                analyser.fftSize = 512;
+                analyser.smoothingTimeConstant = 0.8;
+                source.connect(analyser);
+                
+                isListening = true;
+                const micIndicator = document.getElementById('mic-indicator');
+                if (micIndicator) {
+                    micIndicator.classList.add('active');
+                }
+                listenForBlow();
+            } catch (error) {
+                console.log('Microphone access denied or not available:', error);
+                const instruction = document.querySelector('.blow-instruction');
+                if (instruction) {
+                    instruction.innerHTML = 'Click on the candles to blow them out! 💨';
+                }
+                enableClickMode();
+            }
+        }
+
+        function stopMicrophoneListening() {
+            isListening = false;
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+                mediaStream = null;
+            }
+            const micIndicator = document.getElementById('mic-indicator');
+            if (micIndicator) {
+                micIndicator.classList.remove('active');
+            }
+        }
+
+        function listenForBlow() {
+            if (!isListening || !analyser) return;
+
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            
+            analyser.getByteFrequencyData(dataArray);
+            
+            // Focus on lower frequencies for breath detection
+            let sum = 0;
+            for (let i = 0; i < bufferLength / 4; i++) {
+                sum += dataArray[i];
+            }
+            const average = sum / (bufferLength / 4);
+            
+            // Detect breath with threshold
+            if (average > 25 && candlesLit > 0) {
+                const litCandles = document.querySelectorAll('.candle:not(.blown-out)');
+                if (litCandles.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * litCandles.length);
+                    const candleToBlowOut = litCandles[randomIndex];
+                    const candleIndex = parseInt(candleToBlowOut.dataset.index);
+                    blowOutCandle(candleToBlowOut, candleIndex);
+                    
+                    // Add delay to prevent too rapid blowing
+                    setTimeout(() => {
+                        if (isListening) {
+                            requestAnimationFrame(listenForBlow);
+                        }
+                    }, 300);
+                    return;
+                }
+            }
+            
+            if (isListening) {
+                requestAnimationFrame(listenForBlow);
+            }
+        }
+
+        function enableClickMode() {
+            const candles = document.querySelectorAll('.candle');
+            candles.forEach(candle => {
+                candle.addEventListener('click', () => {
+                    const index = parseInt(candle.dataset.index);
+                    blowOutCandle(candle, index);
+                });
+            });
+        }
+
+        function createCandles() {
+            const candlesContainer = document.getElementById('candles');
+            candlesContainer.innerHTML = '';
+            candlesLit = 21;
+            updateCandleCounter();
+
+            // Better positioned candles for the adjusted cake
+            const candlePositions = [
+                // Top layer candles (7 candles)
+                {x: 0, y: -148}, {x: -20, y: -146}, {x: 20, y: -146}, 
+                {x: -12, y: -152}, {x: 12, y: -152}, {x: -28, y: -142}, {x: 28, y: -142},
+                
+                // Middle layer candles (7 candles)
+                {x: -35, y: -105}, {x: -20, y: -108}, {x: -5, y: -110}, 
+                {x: 5, y: -110}, {x: 20, y: -108}, {x: 35, y: -105}, {x: 0, y: -112},
+                
+                // Bottom layer candles (7 candles)
+                {x: -50, y: -68}, {x: -30, y: -70}, {x: -10, y: -72}, 
+                {x: 10, y: -72}, {x: 30, y: -70}, {x: 50, y: -68}, {x: 0, y: -74}
+            ];
+
+            candlePositions.forEach((pos, index) => {
+                const candle = document.createElement('div');
+                candle.classList.add('candle');
+                candle.style.left = `calc(50% + ${pos.x}px)`;
+                candle.style.top = `${pos.y}px`;
+                candle.dataset.index = index;
+                candlesContainer.appendChild(candle);
+            });
+        }
+
+        function blowOutCandle(candle, index) {
+            if (!candle.classList.contains('blown-out')) {
+                candle.classList.add('blown-out');
+                candlesLit--;
+                updateCandleCounter();
+                playNote(200 + Math.random() * 100, 0.1, 0.03);
+                createSmokeEffect(candle);
+
+                if (candlesLit === 0) {
+                    setTimeout(() => {
+                        showBirthdayWish();
+                    }, 500);
+                }
+            }
+        }
+
+        function createSmokeEffect(candle) {
+            const smoke = document.createElement('div');
+            smoke.innerHTML = '💨';
+            smoke.style.position = 'absolute';
+            smoke.style.left = candle.style.left;
+            smoke.style.top = candle.style.top;
+            smoke.style.transform = 'translateY(-20px)';
+            smoke.style.animation = 'smokeRise 1.5s ease-out forwards';
+            smoke.style.pointerEvents = 'none';
+            smoke.style.fontSize = '14px';
+            smoke.style.zIndex = '5';
+            document.getElementById('candles').appendChild(smoke);
+
+            setTimeout(() => smoke.remove(), 1500);
+        }
+
         function updateCandleCounter() {
             const counter = document.getElementById('candles-counter');
             if (candlesLit > 0) {
                 counter.textContent = `${candlesLit} candle${candlesLit !== 1 ? 's' : ''} remaining`;
-                counter.style.color = 'rgba(255, 255, 255, 0.95)';
+                counter.style.color = 'rgba(255, 255, 255, 0.9)';
             } else {
-                counter.textContent = '✨ All candles blown out! ✨';
-                counter.style.color = '#ffd700';
+                counter.textContent = '🎉 All candles blown out! 🎉';
+                counter.style.color = 'rgba(255, 255, 255, 1)';
+                stopMicrophoneListening();
             }
         }
 
         function showBirthdayWish() {
-            const wish = document.createElement('div');
-            wish.textContent = "🎂 Happy Birthday! May all your wishes come true! 🎂";
-            wish.style.position = 'fixed';
-            wish.style.top = '50%';
-            wish.style.left = '50%';
-            wish.style.transform = 'translate(-50%, -50%)';
-            wish.style.fontSize = '2em';
-            wish.style.fontWeight = '700';
-            wish.style.color = '#fff';
-            wish.style.textShadow = '0 0 15px rgba(255,255,255,0.9), 0 0 30px #f39c12';
-            wish.style.padding = '20px 30px';
-            wish.style.borderRadius = '20px';
-            wish.style.background = 'rgba(0,0,0,0.5)';
-            wish.style.animation = 'wishAppear 1s ease-out forwards';
-            wish.style.zIndex = '1000';
+            makeConfetti();
+            createSparkles();
 
-            document.body.appendChild(wish);
+            setTimeout(() => playChord([523.25, 659.25, 783.99], 1.0), 0);
+            setTimeout(() => playChord([587.33, 698.46, 880.00], 1.0), 300);
+
+            const wishMessage = document.createElement('div');
+            wishMessage.innerHTML = '🌟 Happy 21st Birthday! Your wish will come true! 🌟';
+            wishMessage.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+                backdrop-filter: blur(20px);
+                color: white;
+                padding: 32px 48px;
+                border-radius: 24px;
+                font-size: 1.5em;
+                font-weight: 600;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                z-index: 1000;
+                animation: wishAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            `;
+            document.body.appendChild(wishMessage);
 
             setTimeout(() => {
-                wish.remove();
-            }, 5000);
-        }
-
-        function createSparkles() {
-            for (let i = 0; i < 15; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                sparkle.textContent = '✨';
-                sparkle.style.left = `${Math.random() * 100}%`;
-                sparkle.style.top = `${Math.random() * 100}%`;
-                sparkle.style.fontSize = `${16 + Math.random() * 12}px`;
-                sparkle.style.animationDuration = `${1 + Math.random() * 2}s`;
-                document.body.appendChild(sparkle);
-
-                setTimeout(() => sparkle.remove(), 3000);
-            }
+                wishMessage.remove();
+            }, 4000);
         }
 
         function makeConfetti() {
             for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti-piece');
-                confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
-                confetti.style.width = `${6 + Math.random() * 6}px`;
-                confetti.style.height = `${6 + Math.random() * 6}px`;
-                confetti.style.animationDuration = `${2 + Math.random() * 3}s`;
-                document.body.appendChild(confetti);
-
-                setTimeout(() => confetti.remove(), 5000);
+                setTimeout(() => {
+                    createConfetti();
+                }, i * 100);
             }
         }
 
-        function playSurprise() {
-            closeAllSections();
-            document.getElementById('surprise-message').classList.toggle('hidden');
-            createSparkles();
-            makeConfetti();
-            playChord([523.25, 659.25, 783.99], 1); // C major chord 🎶
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti-piece');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
         }
+
+        function getRandomColor() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#ff9ff3', '#54a0ff'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function createSparkles() {
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.innerHTML = '✨';
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.top = Math.random() * 100 + 'vh';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }
+        }
+
+        // Auto-create some ambient sparkles
+        setInterval(() => {
+            if (Math.random() < 0.3) {
+                createSparkles();
+            }
+        }, 3000);
+
+        // Add click effect to the main card
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.birthday-card');
+            if (card) {
+                card.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = '💖';
+                    sparkle.style.position = 'absolute';
+                    sparkle.style.left = x + 'px';
+                    sparkle.style.top = y + 'px';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.animation = 'sparkle 1s ease-out forwards';
+                    sparkle.style.fontSize = '20px';
+                    sparkle.style.zIndex = '100';
+                    this.appendChild(sparkle);
+
+                    setTimeout(() => sparkle.remove(), 1000);
+                });
+            }
+        });
+
+        // Clean up resources when page unloads
+        window.addEventListener('beforeunload', () => {
+            stopMicrophoneListening();
+            if (musicInterval) {
+                clearInterval(musicInterval);
+            }
+        });
     </script>
 </body>
 </html>
